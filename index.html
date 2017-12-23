@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>express demo</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body {
+			padding: 10px;
+		}
+		input[type=button] {
+			width: 200px;
+			height: 34px;
+			border-radius: 6px;
+			border: none;
+			background-color: #3383f9;
+			margin: 10px auto;
+			color: #fff;
+			font-size: 18px;
+			display: block;
+			cursor: pointer;
+		}
+		input[type=button]:focus {
+			outline: none;
+		}
+		input[type=button]:hover {
+			background-color: #126aec;
+		}
+		input[type=button]:active {
+			color: gold;
+			font-size: 20px;
+		}
+	</style>
+	<script src="./js/jquery.min.js"></script>
+	<script>
+		function post() {
+			$.post({
+				url: '/api/ajax',
+				data: {
+					sendMsg: 'POST POST'
+				},
+				dataType: 'json',
+				// contentType: "application/json",
+				error: (req, err, e) => {
+					console.log('req', req);
+					console.log('err', err);
+					console.log('e', e);
+				},
+				success: (resp) => {
+					console.log(resp.msg);
+				}
+			});
+		}
+		function get() {
+			$.get({
+				url: '/api/ajax',
+				data: {
+					sendMsg: 'GET GET'
+				},
+				dataType: 'json',
+				error: (req, err, e) => {
+					console.log('req', req);
+					console.log('err', err);
+					console.log('e', e);
+				},
+				success: (resp) => {
+					console.log(resp.msg);
+				}
+			});
+		}
+	</script>
+</head>
+<body>
+<div><input type="button" name="" value="POST" onclick="post()"></div>
+<div><input type="button" name="" value="GET" onclick="get()"></div>
+</body>
+</html>

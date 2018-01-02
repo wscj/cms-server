@@ -23,14 +23,14 @@ router.get('/api/ajax', (req, res) => {
 router.get('/api/login', (req, res) => {
   const md5 = require('md5');
 
-  if (req.query.account === 'admin' && md5(req.query.pwd) === md5('123')) {
+  if (req.query.account === 'admin' && req.query.pwd === md5('123')) {
     const jwt = require('jsonwebtoken');
     const token = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24, //24小时后过期
       account: 'admin',
       uid: '1'
     }, 'mySecret');
-    res.send({ token: token, user: { account: 'admin' } });
+    res.send({ token: token, account: 'admin' });
   }
   else {
     res.send({ error: '帐号或密码错误' });
